@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Base Lines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @base_lines.each do |base_line| %>
+      <tr>
+        <td><%= base_line.t_name %></td>
+        <td><%= base_line.n_date %></td>
+        <td><%= link_to 'Show', base_line %></td>
+        <td><%= link_to 'Edit', edit_base_line_path(base_line) %></td>
+        <td><%= link_to 'Destroy', base_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Base line', new_base_line_path %>

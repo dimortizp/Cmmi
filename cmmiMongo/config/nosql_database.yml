@@ -1,0 +1,5 @@
+development:  
+    adapter: mysql  
+    database: test  
+    username: root  
+    password:

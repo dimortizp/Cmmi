@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>N realtime:</strong>
+  <%= @project_step.n_realtime %>
+</p>
+
+<p>
+  <strong>N estimatedtime:</strong>
+  <%= @project_step.n_estimatedTime %>
+</p>
+
+<p>
+  <strong>N completionpercentage:</strong>
+  <%= @project_step.n_completionPercentage %>
+</p>
+
+<p>
+  <strong>T state:</strong>
+  <%= @project_step.t_state %>
+</p>
+
+<%= link_to 'Edit', edit_project_step_path(@project_step) %> |
+<%= link_to 'Back', project_steps_path %>

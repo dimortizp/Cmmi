@@ -1,0 +1,25 @@
+<%= form_for(@base_line) do |f| %>
+  <% if @base_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@base_line.errors.count, "error") %> prohibited this base_line from being saved:</h2>
+
+      <ul>
+      <% @base_line.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :t_name %><br>
+    <%= f.text_field :t_name %>
+  </div>
+  <div class="field">
+    <%= f.label :n_date %><br>
+    <%= f.text_field :n_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
