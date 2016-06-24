@@ -1,0 +1,29 @@
+<%= form_for(@project_stepout) do |f| %>
+  <% if @project_stepout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_stepout.errors.count, "error") %> prohibited this project_stepout from being saved:</h2>
+
+      <ul>
+      <% @project_stepout.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :n_step %><br>
+    <%= f.number_field :n_step %>
+  </div>
+  <div class="field">
+    <%= f.label :n_project %><br>
+    <%= f.number_field :n_project %>
+  </div>
+  <div class="field">
+    <%= f.label :t_document %><br>
+    <%= f.text_field :t_document %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

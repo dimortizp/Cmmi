@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Stepouts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>N step</th>
+      <th>N project</th>
+      <th>T document</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_stepouts.each do |project_stepout| %>
+      <tr>
+        <td><%= project_stepout.n_step %></td>
+        <td><%= project_stepout.n_project %></td>
+        <td><%= project_stepout.t_document %></td>
+        <td><%= link_to 'Show', project_stepout %></td>
+        <td><%= link_to 'Edit', edit_project_stepout_path(project_stepout) %></td>
+        <td><%= link_to 'Destroy', project_stepout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project stepout', new_project_stepout_path %>

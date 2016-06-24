@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Stepins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>N step</th>
+      <th>T format</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stepins.each do |stepin| %>
+      <tr>
+        <td><%= stepin.n_step %></td>
+        <td><%= stepin.t_format %></td>
+        <td><%= link_to 'Show', stepin %></td>
+        <td><%= link_to 'Edit', edit_stepin_path(stepin) %></td>
+        <td><%= link_to 'Destroy', stepin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stepin', new_stepin_path %>

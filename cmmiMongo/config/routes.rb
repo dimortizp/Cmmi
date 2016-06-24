@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :formats
+  resources :stepouts
+  resources :stepins
+  resources :documents
+  resources :project_stepouts
+  resources :project_stepins
   resources :base_lines
   resources :project_ns
   resources :project_steps

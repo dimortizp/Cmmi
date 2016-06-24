@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Base Lines</h1>
+<h1>Lineas base del proyecto</h1>
 
 <table>
   <thead>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= base_line.t_name %></td>
         <td><%= base_line.n_date %></td>
-        <td><%= link_to 'Show', base_line %></td>
-        <td><%= link_to 'Edit', edit_base_line_path(base_line) %></td>
-        <td><%= link_to 'Destroy', base_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', base_line %></td>
+        <td><%= link_to 'Editar', edit_base_line_path(base_line) %></td>
+        <td><%= link_to 'Elimar', base_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Base line', new_base_line_path %>
+<%= link_to 'Nueva linea base', new_base_line_path %>

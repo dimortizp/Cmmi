@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>N format:</strong>
+  <%= @document.n_format %>
+</p>
+
+<p>
+  <strong>N project:</strong>
+  <%= @document.n_project %>
+</p>
+
+<p>
+  <strong>N version:</strong>
+  <%= @document.n_version %>
+</p>
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>

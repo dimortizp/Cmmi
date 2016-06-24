@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>T name:</strong>
+  <%= @format.t_name %>
+</p>
+
+<p>
+  <strong>T content:</strong>
+  <%= @format.t_content %>
+</p>
+
+<%= link_to 'Edit', edit_format_path(@format) %> |
+<%= link_to 'Back', formats_path %>

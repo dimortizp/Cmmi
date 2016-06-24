@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>N step:</strong>
+  <%= @project_stepout.n_step %>
+</p>
+
+<p>
+  <strong>N project:</strong>
+  <%= @project_stepout.n_project %>
+</p>
+
+<p>
+  <strong>T document:</strong>
+  <%= @project_stepout.t_document %>
+</p>
+
+<%= link_to 'Edit', edit_project_stepout_path(@project_stepout) %> |
+<%= link_to 'Back', project_stepouts_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@stepin) do |f| %>
+  <% if @stepin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stepin.errors.count, "error") %> prohibited this stepin from being saved:</h2>
+
+      <ul>
+      <% @stepin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :n_step %><br>
+    <%= f.number_field :n_step %>
+  </div>
+  <div class="field">
+    <%= f.label :t_format %><br>
+    <%= f.text_field :t_format %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
