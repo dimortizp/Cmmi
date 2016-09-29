@@ -5,14 +5,14 @@
 #   gem 'mysql2'
 #
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
   database: structured
-  username: root
+  username: postgres
   password: admin
   host: localhost
 
