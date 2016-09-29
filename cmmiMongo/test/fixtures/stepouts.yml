@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  n_step: 1
-  t_format: MyString
-
-two:
-  n_step: 1
-  t_format: MyString
