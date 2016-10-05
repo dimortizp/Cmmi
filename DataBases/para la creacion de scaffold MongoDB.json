@@ -9,3 +9,13 @@ you might need to open a shell and debug the state of this repo
 
 rails g scaffold projectStep n_realtime:string n_estimatedTime:string n_completionPercentage:float t_state:string
 rails g scaffold company t_name:string t_logo:string t_slogan:string
+
+rails g scaffold stepM n_step:integer t_format:string t_type:string
+rails g scaffold projectStepM n_step:integer n_project:integer t_document:string t_type:string
+
+rails generate active_record:migration add_t_capability_to_level t_capability:string
+rails generate active_record:migration add_t_madurity_to_level t_madurity:string
+rails generate active_record:migration remove_t_description_to_processarea t_description:string
+rails generate active_record:migration add_t_initials_to_processarea t_initials:string t_category:string
+
+rake db:migrate

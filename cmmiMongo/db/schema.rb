@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506175330) do
+ActiveRecord::Schema.define(version: 20161005020835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(version: 20160506175330) do
   end
 
   create_table "levels", force: :cascade do |t|
-    t.string   "t_name",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "t_name",       limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "t_capability"
+    t.string   "t_madurity"
   end
 
   create_table "practices", force: :cascade do |t|
@@ -51,11 +53,12 @@ ActiveRecord::Schema.define(version: 20160506175330) do
 
   create_table "processareas", force: :cascade do |t|
     t.integer  "n_level"
-    t.string   "t_name",        limit: 255
-    t.string   "t_description", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "t_name",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "level_id"
+    t.string   "t_initials"
+    t.string   "t_category"
   end
 
   create_table "projects", force: :cascade do |t|

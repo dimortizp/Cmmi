@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Levels</h1>
+<h1>Niveles de CMMI-Dev</h1>
 
 <table>
   <thead>
     <tr>
-      <th>T name</th>
+      <th>Numero</th>
+      <th>Capacidad</th>
+      <th>Madurez</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +16,8 @@
     <% @levels.each do |level| %>
       <tr>
         <td><%= level.t_name %></td>
+        <td><%= level.t_capability %></td>
+        <td><%= level.t_madurity %></td>
         <td><%= link_to 'Show', level %></td>
         <td><%= link_to 'Edit', edit_level_path(level) %></td>
         <td><%= link_to 'Destroy', level, method: :delete, data: { confirm: 'Are you sure?' } %></td>
