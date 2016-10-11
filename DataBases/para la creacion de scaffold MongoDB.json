@@ -17,5 +17,6 @@ rails generate active_record:migration add_t_capability_to_level t_capability:st
 rails generate active_record:migration add_t_madurity_to_level t_madurity:string
 rails generate active_record:migration remove_t_description_to_processarea t_description:string
 rails generate active_record:migration add_t_initials_to_processarea t_initials:string t_category:string
+rails generate active_record:migration add_t_code_to_practice t_code:string 
 
 rake db:migrate

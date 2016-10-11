@@ -1,4 +1,9 @@
 /* Uncomment and set these variables to customize the grid. */
+.footer {
+    width: auto;    
+    position: absolute;
+    bottom: 0px;
+  }
 
 .container-fluid {
   margin-right: auto;
@@ -994,4 +999,5 @@
     -webkit-box-ordinal-group: 2;
     order: 1;
   }
+
 }
