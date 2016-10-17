@@ -10,18 +10,18 @@
 <body>
 
 <HEADER>
-	<nav class="be-red white large-padding">
+	<nav class="be-red white large-padding nav">
 		<ul class="no-list row center-xs middle-xs">
 			<li class="col-md">
 				<h1 class="no-margin" id="logo">CMMI-Dev</h1>
 			</li> 
 			<li class="col-md">
-				<%= link_to "Inicio  ", root_path %>
+				<%= link_to "Inicio", root_path %>
 			</li>
 			<li class="col-md"><a href=""> CMMi-dev</a>
 				<ul>
 					<li class="col-md">
-						<%= link_to "Niveles  ", levels_path %>
+						<%= link_to "Niveles", levels_path %>
 					</li>					
 					<li class="col-md">
 						<%= link_to "Areas de proceso", processareas_path %>
@@ -35,17 +35,20 @@
 				</ul>				
 			</li>
 			<li class="col-md">
-				<%= link_to "Compañia  ", companies_path %>
+				<%= link_to "Compañia", companies_path %>
 			</li>
 			<li class="col-md">
-				<%= link_to "Proyecto  ", projects_path %>
+				<%= link_to "Mapa de proceso", steps_path %>
 			</li>
 			<li class="col-md">
-				<%= link_to "Practica  ", practices_path %>
+				<%= link_to "Proyecto", projects_path %>
+			</li>		
+			<li class="col-md">
+				<%= link_to "Proceso del proyecto", project_steps_path %>
 			</li>
 			<li class="col-md">
-				<%= link_to "Tarea  ", steps_path %>
-			</li>
+				<%= link_to "Lineas base", base_lines_path %>
+			</li>					
 			<li class="col-md">
 				<div id="user_nav">
 				  <% if user_signed_in? %>

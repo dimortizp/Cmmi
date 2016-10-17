@@ -12,6 +12,27 @@
   padding-left: 2rem;
 }
 
+.nav > li {
+float:left;
+}
+
+.nav li a {
+display:block;
+padding: 0px 4px;
+background:#E74C3C;
+}
+.nav li a:hover {
+background:#E74C3C;
+}
+.nav li ul {
+display:none;
+position:absolute;
+
+}
+.nav li:hover > ul {
+display:block;
+}
+
 .row {
   box-sizing: border-box;
   display: -webkit-flex;

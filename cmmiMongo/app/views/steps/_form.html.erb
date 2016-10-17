@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    Descripcion: <br>
+    Proceso: <br>
     <%= f.text_field :t_description %>
   </div>
   <div class="field">
@@ -21,19 +21,19 @@
   </div>
   <div class="field">
     <%= f.label :n_yestStep %><br>
-    <%= f.number_field :n_yestStep %>
+    <%= f.number_field :n_yeststep %>
   </div>
   <div class="field">
     <%= f.label :n_noStep %><br>
-    <%= f.number_field :n_noStep %>
+    <%= f.number_field :n_nostep %>
   </div>
   <div class="field">
     <%= f.label :t_typeStep %><br>
-    <%= f.text_field :t_typeStep %>
+    <%= f.text_field :t_typestep %>
   </div>
   <div class="field">
-    Rol: <br>
-    <%= f.number_field :n_rol %>
+    Contiene proceso: <br>
+    <%= f.check_box :contains_process %>
   </div>
   <div class="actions">
     <%= f.submit %>

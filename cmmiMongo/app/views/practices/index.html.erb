@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Codigo</th>
       <th>Nombre</th>
       <th>Descripción</th>
       <th>Meta</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @practices.each do |practice| %>
       <tr>
+        <td><%= practice.t_code %></td>
         <td><%= practice.t_name %></td>
         <td><%= practice.t_description %></td>
         <td><%= practice.n_goal %></td>

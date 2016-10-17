@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>T document:</strong>
+  <%= @base_line_document.t_document %>
+</p>
+
+<p>
+  <strong>T state:</strong>
+  <%= @base_line_document.t_state %>
+</p>
+
+<p>
+  <strong>N version:</strong>
+  <%= @base_line_document.n_version %>
+</p>
+
+<%= link_to 'Edit', edit_base_line_document_path(@base_line_document) %> |
+<%= link_to 'Back', base_line_documents_path %>

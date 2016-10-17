@@ -1,0 +1,21 @@
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">      
+
+		<p id="notice"><%= notice %></p>
+
+		<p>
+		  <strong>Nombre:</strong>
+		  <%= @base_line.t_name %>
+		</p>
+
+		<p>
+		  <strong>Ver:</strong>
+		  <%= @base_line.t_state %>
+		</p>
+
+		<%= link_to 'Editar', edit_base_line_path(@base_line) %> |
+		<%= link_to 'Regresar', base_lines_path %>
+    </div>    
+  </div>
+</div>

@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">		
+		<p id="notice"><%= notice %></p>
+		<p>
+		  <strong>Nombre:</strong>
+		  <%= @goal.t_name %>
+		</p>
 
-<p>
-  <strong>N processarea:</strong>
-  <%= @goal.n_processarea %>
-</p>
+		<p>
+		  <strong>Descripcion:</strong>
+		  <%= @goal.t_description %>
+		</p>
 
-<p>
-  <strong>T name:</strong>
-  <%= @goal.t_name %>
-</p>
+		<p>
+		  <strong>Codigo:</strong>
+		  <%= @goal.t_type %>
+		</p>
+		<p>
+		  <strong>Area de proceso:</strong>
+		  <%= @goal.n_processarea %>
+		</p>
 
-<p>
-  <strong>T description:</strong>
-  <%= @goal.t_description %>
-</p>
-
-<p>
-  <strong>T type:</strong>
-  <%= @goal.t_type %>
-</p>
-
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+		<%= link_to 'Editar', edit_goal_path(@goal) %> |
+		<%= link_to 'Regresar', goals_path %>
+   </div>    
+  </div>
+</div>

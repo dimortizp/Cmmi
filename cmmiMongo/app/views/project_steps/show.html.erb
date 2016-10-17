@@ -1,0 +1,33 @@
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left"> 
+		
+		<p id="notice"><%= notice %></p>
+
+		<p>
+		  <strong>Tiempo real:</strong>
+		  <%= @project_step.n_realtime %>
+		</p>
+
+		<p>
+		  <strong>Tiempo estimado:</strong>
+		  <%= @project_step.n_estimatedTime %>
+		</p>
+
+		<p>
+		  <strong>Porcentaje realizado:</strong>
+		  <%= @project_step.n_completionPercentage %>
+		</p>
+
+		<p>
+		  <strong>Estado:</strong>
+		  <%= @project_step.t_state %>
+		</p>
+
+		<%= link_to 'Editar', edit_project_step_path(@project_step) %> |
+		<%= link_to 'Regresar', project_steps_path %>
+
+
+    </div>    
+  </div>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  n_realtime: 2016-10-16 13:57:57
+  n_estimatedTime: 2016-10-16 13:57:57
+  n_completionPercentage: 1.5
+  t_state: MyString
+
+two:
+  n_realtime: 2016-10-16 13:57:57
+  n_estimatedTime: 2016-10-16 13:57:57
+  n_completionPercentage: 1.5
+  t_state: MyString

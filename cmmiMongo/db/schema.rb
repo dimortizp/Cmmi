@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011222456) do
+ActiveRecord::Schema.define(version: 20161016194549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "base_line_documents", force: :cascade do |t|
+    t.string   "t_document"
+    t.string   "t_state"
+    t.integer  "n_version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "base_lines", force: :cascade do |t|
+    t.string   "t_name"
+    t.string   "t_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string   "t_name",     limit: 255
@@ -62,6 +77,15 @@ ActiveRecord::Schema.define(version: 20161011222456) do
     t.string   "t_category"
   end
 
+  create_table "project_steps", force: :cascade do |t|
+    t.datetime "n_realtime"
+    t.datetime "n_estimatedTime"
+    t.float    "n_completionPercentage"
+    t.string   "t_state"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "t_name",      limit: 255
     t.datetime "created_at",              null: false
@@ -75,14 +99,16 @@ ActiveRecord::Schema.define(version: 20161011222456) do
   end
 
   create_table "steps", force: :cascade do |t|
-    t.string  "t_description", limit: 50
+    t.string  "t_description",        limit: 50
     t.integer "n_practice"
     t.integer "n_yeststep"
     t.integer "n_nostep"
-    t.string  "t_typestep",    limit: 50
+    t.string  "t_typestep",           limit: 50
     t.integer "n_rol"
     t.integer "user_id"
     t.integer "practice_id"
+    t.boolean "contains_process"
+    t.integer "id_first_step_inside"
   end
 
   create_table "users", force: :cascade do |t|

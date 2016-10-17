@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :base_line_documents
+  resources :base_lines
+  resources :project_steps
   resources :project_step_ms
   resources :step_ms
   resources :formats

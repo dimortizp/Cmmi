@@ -1,32 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">      
+        <p id="notice"><%= notice %></p>
 
-<h1>Areas de Proceso</h1>
+        <h1>Areas de Proceso</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Iniciales</th>
-      <th>Categoria</th>
-      <th>Nivel</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <table>
+          <thead>
+            <tr>
+              <th>Nivel</th>
+              <th>Nombre</th>
+              <th>Iniciales</th>
+              <th>Categoria</th>              
+              <th colspan="3">Acciones</th>
+            </tr>
+          </thead>
 
-  <tbody>
-    <% @processareas.each do |processarea| %>
-      <tr>
-        <td><%= processarea.t_name %></td>
-        <td><%= processarea.t_initials %></td>
-        <td><%= processarea.t_category %></td>
-        <td><%= processarea.n_level %></td>
-        <td><%= link_to 'Ver', processarea %></td>
-        <td><%= link_to 'Editar', edit_processarea_path(processarea) %></td>
-        <td><%= link_to 'Eliminar', processarea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <tbody>
+            <% @processareas.each do |processarea| %>
+              <tr>
+                <td><%= processarea.n_level %></td>
+                <td><%= processarea.t_name %></td>
+                <td><%= processarea.t_initials %></td>
+                <td><%= processarea.t_category %></td>                
+                <td><%= link_to 'Ver', processarea %></td>
+                <td><%= link_to 'Editar', edit_processarea_path(processarea) %></td>
+                <td><%= link_to 'Eliminar', processarea, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-<br>
+        <br>
+        <%= link_to 'Nueva area ', new_level_path %>
+   </div>    
+  </div>
+</div>
 

@@ -1,33 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">
+      <p id="notice"><%= notice %></p>
 
-<h1>Listing Goals</h1>
+      <h1>Metas</h1>
+      <table>
+        <thead>
+          <tr>            
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Codigo</th>
+            <th>Area de proceso</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>N processarea</th>
-      <th>T name</th>
-      <th>T description</th>
-      <th>T type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <tbody>
+          <% @goals.each do |goal| %>
+            <tr>              
+              <td><%= goal.t_name %></td>
+              <td><%= goal.t_description %></td>
+              <td><%= goal.t_type %></td>
+              <td><%= goal.n_processarea %></td>
+              <td><%= link_to 'Ver', goal %></td>
+              <td><%= link_to 'Editar', edit_goal_path(goal) %></td>
+              <td><%= link_to 'Eliminar', goal, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= goal.n_processarea %></td>
-        <td><%= goal.t_name %></td>
-        <td><%= goal.t_description %></td>
-        <td><%= goal.t_type %></td>
-        <td><%= link_to 'Show', goal %></td>
-        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <br>
 
-<br>
-
-<%= link_to 'New Goal', new_goal_path %>
+      <%= link_to 'Nueva meta', new_goal_path %>
+   </div>    
+  </div>
+</div>

@@ -18,5 +18,18 @@ rails generate active_record:migration add_t_madurity_to_level t_madurity:string
 rails generate active_record:migration remove_t_description_to_processarea t_description:string
 rails generate active_record:migration add_t_initials_to_processarea t_initials:string t_category:string
 rails generate active_record:migration add_t_code_to_practice t_code:string 
+rails generate active_record:migration add_contains_process_to_step contains_process:boolean id_first_step_inside:integer 
+
+rails generate scaffold projectStep n_realtime:timestamp n_estimatedTime:timestamp n_completionPercentage:float t_state:string
+rails destroy model projectStep
+rails generate active_record:model projectStep n_realtime:timestamp n_estimatedTime:timestamp n_completionPercentage:float t_state:string
+
+rails generate scaffold baseLine t_name:string t_state:string
+rails destroy model baseLine
+rails generate active_record:model baseLine t_name:string t_state:string
+
+rails generate scaffold baseLineDocument t_document:string t_state:string n_version:integer
+rails destroy model baseLineDocument
+rails generate active_record:model baseLineDocument t_document:string t_state:string n_version:integer
 
 rake db:migrate
