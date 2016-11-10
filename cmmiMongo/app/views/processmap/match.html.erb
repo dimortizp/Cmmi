@@ -1,0 +1,40 @@
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">
+
+		<h1>Emparejar mapa de procesos con practicas especificas</h1>
+		<p><% primera = Primera.new %></p>
+		<p><%= primera.mostrar %></p>
+		<table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Proceso</th>
+              <th>Id de entrada</th>
+              <th>id siguiente</th>
+              <th>Tipo de paso</th>
+              <th>Contiene proceso</th>
+              <th>Id practica</th>              
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @procces.each do |procces| %>
+              <tr>
+                <td><%= procces.id %></td>
+                <td><%= procces.t_description %></td>
+                <td><%= procces.n_yeststep %></td>
+                <td><%= procces.n_nostep %></td>
+                <td><%= procces.t_typestep %></td>
+                <td><%= procces.contains_process %></td>  
+                <td><%= procces.practice_id %></td>    
+                <td><%= link_to 'Editar', edit_step_path(procces) %></td>               
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+  </div>    
+  </div>
+</div>

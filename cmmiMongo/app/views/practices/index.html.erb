@@ -1,33 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">
 
-<h1>Listas de practicas</h1>
+      <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Codigo</th>
-      <th>Nombre</th>
-      <th>Descripción</th>
-      <th>Meta</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <h1>Listas de practicas</h1>
 
-  <tbody>
-    <% @practices.each do |practice| %>
-      <tr>
-        <td><%= practice.t_code %></td>
-        <td><%= practice.t_name %></td>
-        <td><%= practice.t_description %></td>
-        <td><%= practice.n_goal %></td>
-        <td><%= link_to 'Ver', practice %></td>
-        <td><%= link_to 'Editar', edit_practice_path(practice) %></td>
-        <td><%= link_to 'Eliminar', practice, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <table>
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Meta</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<br>
+        <tbody>
+          <% @practices.each do |practice| %>
+            <tr>
+              <td><%= practice.t_code %></td>
+              <td><%= practice.t_name %></td>
+              <td><%= practice.t_description %></td>
+              <td><%= practice.n_goal %></td>
+              <td><%= link_to 'Ver', practice %></td>
+              <td><%= link_to 'Editar', edit_practice_path(practice) %></td>
+              <td><%= link_to 'Eliminar', practice, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<%= link_to 'Nueva practica', new_practice_path %>
+      <br>
+      <%= link_to 'Nueva practica', new_practice_path %>
+      <br>
+      <A HREF="/processmap/match">Emparejar mapa de proceso con practica especifica</A>
+        
+   </div>    
+  </div>
+</div>
