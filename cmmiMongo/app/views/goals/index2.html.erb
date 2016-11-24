@@ -1,0 +1,38 @@
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">
+      <p id="notice"><%= notice %></p>
+
+      <h1>Metas</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Area de proceso</th>            
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Codigo</th>            
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @goals.each do |goal| %>
+            <tr>
+              <td><%= goal.n_processarea %></td>              
+              <td><%= goal.t_name %></td>
+              <td><%= goal.t_description %></td>
+              <td><%= goal.t_type %></td>
+              <td><%= link_to 'Ver', goal %></td>
+              <td><%= link_to 'Editar', edit_goal_path(goal) %></td>
+              <td><%= link_to 'Eliminar', goal, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%= link_to 'Nueva meta', new_goal_path %>
+   </div>    
+  </div>
+</div>

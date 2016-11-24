@@ -10,8 +10,6 @@
             <tr>
               <th>Id</th>
               <th>Proceso</th>
-              <th>Id de entrada</th>
-              <th>id siguiente</th>
               <th>Tipo de paso</th>
               <th>Contiene proceso</th>
               <th>Id practica</th>              
@@ -24,12 +22,34 @@
               <tr>
                 <td><%= procces.id %></td>
                 <td><%= procces.t_description %></td>
-                <td><%= procces.n_yeststep %></td>
-                <td><%= procces.n_nostep %></td>
                 <td><%= procces.t_typestep %></td>
                 <td><%= procces.contains_process %></td>  
                 <td><%= procces.practice_id %></td>    
                 <td><%= link_to 'Editar', edit_step_path(procces) %></td>               
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Area de proceso</th>
+              <th>Iniciales</th>
+              <th>Id practica</th>
+              <th>Practica</th>                            
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @specificpractice.each do |specificarea| %>
+              <tr>
+                <td><%= specificarea.id %></td>
+                <td><%= specificarea.t_name %></td>
+                <td><%= specificarea.t_initials%></td>
+                              
               </tr>
             <% end %>
           </tbody>

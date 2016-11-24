@@ -54,3 +54,7 @@ gem 'devise'
 gem 'mongoid'
 
 gem 'pg'
+
+gem 'datagrid'
+
+gem 'kaminari'

@@ -4,7 +4,9 @@ class ProcessareasController < ApplicationController
   # GET /processareas
   # GET /processareas.json
   def index
-    @processareas = Processarea.all
+    @grid = ProcessareasGrid.new(params[:processareas_grid]) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   # GET /processareas/1

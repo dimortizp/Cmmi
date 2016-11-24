@@ -1,37 +1,15 @@
 <div class="row center-xs">
   <div class="col-xs-8 col-md-6">
     <div class="box text-left">
-
-      <p id="notice"><%= notice %></p>
+     <p id="notice"><%= notice %></p>
 
       <h1>Listas de practicas</h1>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Meta</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
+			<%= datagrid_form_for @grid, :method => :get, :url => practices_path %>
 
-        <tbody>
-          <% @practices.each do |practice| %>
-            <tr>
-              <td><%= practice.t_code %></td>
-              <td><%= practice.t_name %></td>
-              <td><%= practice.t_description %></td>
-              <td><%= practice.n_goal %></td>
-              <td><%= link_to 'Ver', practice %></td>
-              <td><%= link_to 'Editar', edit_practice_path(practice) %></td>
-              <td><%= link_to 'Eliminar', practice, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
+			<%= paginate(@grid.assets) %>
+			<%= datagrid_table @grid %>
+			<%= paginate(@grid.assets) %>
       <br>
       <%= link_to 'Nueva practica', new_practice_path %>
       <br>

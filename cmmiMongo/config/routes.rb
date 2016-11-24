@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :practices
+
+  resources :goals
+
+  resources :processareas
+
   get 'processmap/match'
 
   resources :base_line_documents

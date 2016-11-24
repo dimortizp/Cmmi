@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016194549) do
+ActiveRecord::Schema.define(version: 20161110045313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,12 +69,13 @@ ActiveRecord::Schema.define(version: 20161016194549) do
 
   create_table "processareas", force: :cascade do |t|
     t.integer  "n_level"
-    t.string   "t_name",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "t_name",      limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "level_id"
     t.string   "t_initials"
     t.string   "t_category"
+    t.boolean  "for_develop"
   end
 
   create_table "project_steps", force: :cascade do |t|

@@ -1,39 +1,17 @@
 <div class="row center-xs">
   <div class="col-xs-8 col-md-6">
-    <div class="box text-left">      
-        <p id="notice"><%= notice %></p>
+    <div class="box text-left"> 
 
-        <h1>Areas de Proceso</h1>
+    <p id="notice"><%= notice %></p>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Nivel</th>
-              <th>Nombre</th>
-              <th>Iniciales</th>
-              <th>Categoria</th>              
-              <th colspan="3">Acciones</th>
-            </tr>
-          </thead>
+        <h1>Areas de Proceso</h1>	
 
-          <tbody>
-            <% @processareas.each do |processarea| %>
-              <tr>
-                <td><%= processarea.n_level %></td>
-                <td><%= processarea.t_name %></td>
-                <td><%= processarea.t_initials %></td>
-                <td><%= processarea.t_category %></td>                
-                <td><%= link_to 'Ver', processarea %></td>
-                <td><%= link_to 'Editar', edit_processarea_path(processarea) %></td>
-                <td><%= link_to 'Eliminar', processarea, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+		<%=  datagrid_form_for @grid, :method => :get,  :url => processareas_path  %>
 
-        <br>
-        <%= link_to 'Nueva area ', new_level_path %>
+		<%= paginate(@grid.assets) %>
+		<%= datagrid_table @grid %>
+		<%= paginate(@grid.assets) %>
+
    </div>    
   </div>
 </div>
-
