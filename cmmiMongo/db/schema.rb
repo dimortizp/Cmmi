@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110045313) do
+ActiveRecord::Schema.define(version: 20161128225140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,15 @@ ActiveRecord::Schema.define(version: 20161110045313) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string   "t_name",     limit: 255
-    t.string   "t_logo",     limit: 255
-    t.string   "t_slogan",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "t_name",                  limit: 255
+    t.string   "t_logo",                  limit: 255
+    t.string   "t_slogan",                limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "processmap_file_name"
+    t.string   "processmap_content_type"
+    t.integer  "processmap_file_size"
+    t.datetime "processmap_updated_at"
   end
 
   create_table "goals", force: :cascade do |t|
@@ -110,6 +114,7 @@ ActiveRecord::Schema.define(version: 20161110045313) do
     t.integer "practice_id"
     t.boolean "contains_process"
     t.integer "id_first_step_inside"
+    t.integer "parent_id"
   end
 
   create_table "users", force: :cascade do |t|

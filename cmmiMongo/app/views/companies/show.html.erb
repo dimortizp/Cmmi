@@ -18,6 +18,10 @@
 		  <%= @company.t_slogan %>
 		</p>
 
+		<div class="field">
+			<%= image_tag @company.processmap.url(:thumb) %>
+		</div>
+
 		<%= link_to 'Editar', edit_company_path(@company) %> |
 		<%= link_to 'Regresar', companies_path %>
    </div>    

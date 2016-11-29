@@ -1,7 +1,7 @@
 /* Uncomment and set these variables to customize the grid. */
 .footer {
     width: auto;    
-    position: absolute;
+    position: relative;
     bottom: 0px;
   }
 

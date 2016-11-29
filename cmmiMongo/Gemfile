@@ -58,3 +58,13 @@ gem 'pg'
 gem 'datagrid'
 
 gem 'kaminari'
+
+gem 'acts_as_tree'
+
+gem 'bootstrap-sass'
+
+gem 'paperclip'
+
+gem 'pdfjs_viewer-rails'
+
+gem 'autoprefixer-rails'
