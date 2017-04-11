@@ -68,3 +68,5 @@ gem 'paperclip'
 gem 'pdfjs_viewer-rails'
 
 gem 'autoprefixer-rails'
+
+gem 'bootstrap_sb_admin_base_v2'

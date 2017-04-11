@@ -13,7 +13,14 @@
  *= require_tree .
  *= require datagrid
  *= require_self
+
+ *= require font-awesome
+ *= require bootstrap_sb_admin_base_v2
+
+
  */
+
+
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
