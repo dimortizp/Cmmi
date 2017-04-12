@@ -12,16 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :n_level %><br>
+    <%= f.label :Nivel %><br>
     <%= f.number_field :n_level %>
   </div>
   <div class="field">
-    <%= f.label :t_name %><br>
+    <%= f.label :Nombre %><br>
     <%= f.text_field :t_name %>
   </div>
   <div class="field">
-    <%= f.label :t_description %><br>
-    <%= f.text_field :t_description %>
+    <%= f.label :Iniciales %><br>
+    <%= f.text_field :t_initials %>
+  </div>
+  <div class="field">
+    <%= f.label :Categoria %><br>
+    <%= f.text_field :t_category %>
   </div>
   <div class="actions">
     <%= f.submit %>

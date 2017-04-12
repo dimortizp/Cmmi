@@ -1,0 +1,9 @@
+rails destroy scaffold base_lines
+rails destroy scaffold project_n
+rails destroy scaffold project_step
+rails destroy scaffold project_stepin
+rails destroy scaffold project_stepout
+rails destroy scaffold stepin
+rails destroy scaffold stepout
+
+rails generate scaffold stepout

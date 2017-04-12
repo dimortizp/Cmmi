@@ -69,6 +69,6 @@ class BaseLinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def base_line_params
-      params.require(:base_line).permit(:t_name, :n_date)
+      params.require(:base_line).permit(:t_name, :t_state)
     end
 end

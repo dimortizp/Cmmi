@@ -4,7 +4,9 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    @grid = GoalsGrid.new(params[:goals_grid]) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   # GET /goals/1

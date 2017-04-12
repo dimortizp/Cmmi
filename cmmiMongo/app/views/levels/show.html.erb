@@ -1,9 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>T name:</strong>
-  <%= @level.t_name %>
-</p>
-
-<%= link_to 'Ediar', edit_level_path(@level) %> |
-<%= link_to 'Regresar', levels_path %>
+		<p>
+		  <strong>Numero:</strong>
+		  <%= @level.t_name %>
+		</p>
+		<p>
+		  <strong>Capacidad:</strong>
+		  <%= @level.t_capability %>
+		</p>
+		<p>
+		  <strong>Madurez:</strong>
+		  <%= @level.t_madurity %>
+		</p>
+		<%= link_to 'Editar', edit_level_path(@level) %> |
+		<%= link_to 'Regresar', levels_path %>
+   </div>    
+  </div>
+</div>

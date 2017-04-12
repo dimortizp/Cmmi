@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>N step:</strong>
+  <%= @project_step_m.n_step %>
+</p>
+
+<p>
+  <strong>N project:</strong>
+  <%= @project_step_m.n_project %>
+</p>
+
+<p>
+  <strong>T document:</strong>
+  <%= @project_step_m.t_document %>
+</p>
+
+<p>
+  <strong>T type:</strong>
+  <%= @project_step_m.t_type %>
+</p>
+
+<%= link_to 'Edit', edit_project_step_m_path(@project_step_m) %> |
+<%= link_to 'Back', project_step_ms_path %>

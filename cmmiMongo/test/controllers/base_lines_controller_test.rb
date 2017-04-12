@@ -18,7 +18,7 @@ class BaseLinesControllerTest < ActionController::TestCase
 
   test "should create base_line" do
     assert_difference('BaseLine.count') do
-      post :create, base_line: { n_date: @base_line.n_date, t_name: @base_line.t_name }
+      post :create, base_line: { t_name: @base_line.t_name, t_state: @base_line.t_state }
     end
 
     assert_redirected_to base_line_path(assigns(:base_line))
@@ -35,7 +35,7 @@ class BaseLinesControllerTest < ActionController::TestCase
   end
 
   test "should update base_line" do
-    patch :update, id: @base_line, base_line: { n_date: @base_line.n_date, t_name: @base_line.t_name }
+    patch :update, id: @base_line, base_line: { t_name: @base_line.t_name, t_state: @base_line.t_state }
     assert_redirected_to base_line_path(assigns(:base_line))
   end
 

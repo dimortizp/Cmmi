@@ -12,19 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :n_realtime %><br>
-    <%= f.text_field :n_realtime %>
+    <%= f.label :Tiempo_real %><br>
+    <%= f.datetime_select :n_realtime %>
   </div>
   <div class="field">
-    <%= f.label :n_estimatedTime %><br>
-    <%= f.text_field :n_estimatedTime %>
+    <%= f.label :Tiempo_estimado %><br>
+    <%= f.time_select :n_estimatedTime %>
   </div>
   <div class="field">
-    <%= f.label :n_completionPercentage %><br>
+    <%= f.label :Porcentaje_realizado %><br>
     <%= f.text_field :n_completionPercentage %>
   </div>
   <div class="field">
-    <%= f.label :t_state %><br>
+    <%= f.label :Estado %><br>
     <%= f.text_field :t_state %>
   </div>
   <div class="actions">

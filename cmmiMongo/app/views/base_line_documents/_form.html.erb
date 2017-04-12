@@ -1,0 +1,29 @@
+<%= form_for(@base_line_document) do |f| %>
+  <% if @base_line_document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@base_line_document.errors.count, "error") %> prohibited this base_line_document from being saved:</h2>
+
+      <ul>
+      <% @base_line_document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :t_document %><br>
+    <%= f.text_field :t_document %>
+  </div>
+  <div class="field">
+    <%= f.label :t_state %><br>
+    <%= f.text_field :t_state %>
+  </div>
+  <div class="field">
+    <%= f.label :n_version %><br>
+    <%= f.number_field :n_version %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

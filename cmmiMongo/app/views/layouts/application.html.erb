@@ -1,60 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CmmiMongo</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= content_for?(:title) ? yield(:title) : "CMMI-Dev" %>
+  </title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "CMMI-Dev" %>">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300,900' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
+  <div id="wrapper" class="">
+    <%= render 'layouts/navbar' %>
+  </div>
 
-<HEADER>
-	<nav class="be-red white large-padding">
-		<ul class="no-list row center-xs middle-xs">
-			<li class="col-md">
-				<h1 class="no-margin" id="logo">CMMI-Dev</h1>
-			</li> 
-			<li class="col-md">
-				<%= link_to "Inicio  ", root_path %>
-			</li>
-			<li class="col-md">
-				<%= link_to "Compañia  ", companies_path %>
-			</li>
-			<li class="col-md">
-				<%= link_to "Proyecto  ", projects_path %>
-			</li>
-			<li class="col-md">
-				<%= link_to "Practica  ", practices_path %>
-			</li>
-			<li class="col-md">
-				<%= link_to "Tarea  ", steps_path %>
-			</li>
-			<li class="col-md">
-				<div id="user_nav">
-				  <% if user_signed_in? %>
-				    Sesión como: <%= current_user.email %>.				     
-				     Sino?
-				    <%= link_to "Cerrar Sesión", destroy_user_session_path %>
-				  <% else %>
-				    <%= link_to "Crear Sesión", new_user_registration_path %> o
-				    <%= link_to "iniciar Sesión", new_user_session_path %>
-				  <% end %>
-				</div>
-			</li>
-		</ul>
-	</nav>
-</HEADER>
+  <div id="page-wrapper">
+    <%= render 'layouts/title' %>
+    <%= render 'layouts/messages' %>
 
-<%= yield %>
-	<footer>
-		<div class="row center-xs">
-		  <div class="col-xs-8 col-md-6">
-		    <div class="box text-left"><p id="notice"><%= notice %></p>
-		    	<p>Rafael Malagon 20081020053. Diego Ortiz 20081020068. Edwin Paez 20081020072.</p>
-		    </div>    
-		  </div>
-		</div>
-	</footer>
+    <div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%= content_for?(:panel_heading) ? yield(:panel_heading) : "Dashboard" %>
+        </div>
+        <div class="panel-body">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">	
+		<footer>
+			<%= render 'layouts/footer' %>
+			<% debug(params) if Rails.env.development? %>
+
+		</footer>
+   </div>    
+  </div>
+</div>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= content_for?(:extra_scripts) ? yield(:extra_scripts) : nil %>
 </html>

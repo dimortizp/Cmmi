@@ -1,0 +1,1124 @@
+I--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: base_line_documents; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE base_line_documents (
+    id integer NOT NULL,
+    t_document character varying,
+    t_state character varying,
+    n_version integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE base_line_documents OWNER TO postgres;
+
+--
+-- Name: base_line_documents_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE base_line_documents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE base_line_documents_id_seq OWNER TO postgres;
+
+--
+-- Name: base_line_documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE base_line_documents_id_seq OWNED BY base_line_documents.id;
+
+
+--
+-- Name: base_lines; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE base_lines (
+    id integer NOT NULL,
+    t_name character varying,
+    t_state character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE base_lines OWNER TO postgres;
+
+--
+-- Name: base_lines_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE base_lines_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE base_lines_id_seq OWNER TO postgres;
+
+--
+-- Name: base_lines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE base_lines_id_seq OWNED BY base_lines.id;
+
+
+--
+-- Name: companies; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE companies (
+    id integer NOT NULL,
+    t_name character varying(255),
+    t_logo character varying(255),
+    t_slogan character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE companies OWNER TO postgres;
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE companies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE companies_id_seq OWNER TO postgres;
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE companies_id_seq OWNED BY companies.id;
+
+
+--
+-- Name: goals_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE goals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE goals_id_seq OWNER TO postgres;
+
+--
+-- Name: goals; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE goals (
+    id integer DEFAULT nextval('goals_id_seq'::regclass) NOT NULL,
+    n_processarea integer,
+    t_name character varying(255) DEFAULT NULL::character varying,
+    t_description character varying(255) DEFAULT NULL::character varying,
+    t_type character varying(255) DEFAULT NULL::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    processarea_id integer
+);
+
+
+ALTER TABLE goals OWNER TO postgres;
+
+--
+-- Name: levels_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE levels_id_seq
+    START WITH 6
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE levels_id_seq OWNER TO postgres;
+
+--
+-- Name: levels; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE levels (
+    id integer DEFAULT nextval('levels_id_seq'::regclass) NOT NULL,
+    t_name character varying(255) DEFAULT NULL::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    t_capability character varying,
+    t_madurity character varying
+);
+
+
+ALTER TABLE levels OWNER TO postgres;
+
+--
+-- Name: practices_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE practices_id_seq
+    START WITH 2
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE practices_id_seq OWNER TO postgres;
+
+--
+-- Name: practices; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE practices (
+    id integer DEFAULT nextval('practices_id_seq'::regclass) NOT NULL,
+    t_name character varying(255) DEFAULT NULL::character varying,
+    t_description character varying(255) DEFAULT NULL::character varying,
+    n_goal integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    goal_id integer,
+    t_code character varying
+);
+
+
+ALTER TABLE practices OWNER TO postgres;
+
+--
+-- Name: processareas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE processareas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE processareas_id_seq OWNER TO postgres;
+
+--
+-- Name: processareas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE processareas (
+    id integer DEFAULT nextval('processareas_id_seq'::regclass) NOT NULL,
+    n_level integer,
+    t_name character varying(255) DEFAULT NULL::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    level_id integer,
+    t_initials character varying,
+    t_category character varying,
+    for_develop boolean
+);
+
+
+ALTER TABLE processareas OWNER TO postgres;
+
+--
+-- Name: project_steps; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE project_steps (
+    id integer NOT NULL,
+    n_realtime timestamp without time zone,
+    "n_estimatedTime" timestamp without time zone,
+    "n_completionPercentage" double precision,
+    t_state character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE project_steps OWNER TO postgres;
+
+--
+-- Name: project_steps_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE project_steps_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE project_steps_id_seq OWNER TO postgres;
+
+--
+-- Name: project_steps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE project_steps_id_seq OWNED BY project_steps.id;
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE projects_id_seq
+    START WITH 4
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE projects_id_seq OWNER TO postgres;
+
+--
+-- Name: projects; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE projects (
+    id integer DEFAULT nextval('projects_id_seq'::regclass) NOT NULL,
+    t_name character varying(255) DEFAULT NULL::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    companie_id integer,
+    company_id integer
+);
+
+
+ALTER TABLE projects OWNER TO postgres;
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE roles_id_seq OWNER TO postgres;
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE roles (
+    id integer DEFAULT nextval('roles_id_seq'::regclass) NOT NULL,
+    t_rolename bigint NOT NULL
+);
+
+
+ALTER TABLE roles OWNER TO postgres;
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO postgres;
+
+--
+-- Name: steps_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE steps_id_seq
+    START WITH 4
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE steps_id_seq OWNER TO postgres;
+
+--
+-- Name: steps; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE steps (
+    id integer DEFAULT nextval('steps_id_seq'::regclass) NOT NULL,
+    t_description character varying(50) DEFAULT NULL::character varying,
+    n_practice integer,
+    n_yeststep integer,
+    n_nostep integer,
+    t_typestep character varying(50) DEFAULT NULL::character varying,
+    n_rol integer,
+    user_id integer,
+    practice_id integer,
+    contains_process boolean,
+    id_first_step_inside integer
+);
+
+
+ALTER TABLE steps OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 3
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE users (
+    id integer DEFAULT nextval('users_id_seq'::regclass) NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255) DEFAULT NULL::character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255) DEFAULT NULL::character varying,
+    last_sign_in_ip character varying(255) DEFAULT NULL::character varying,
+    name character varying(255) DEFAULT NULL::character varying,
+    address character varying(255) DEFAULT NULL::character varying,
+    role integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    roles_id integer
+);
+
+
+ALTER TABLE users OWNER TO postgres;
+
+--
+-- Name: base_line_documents id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY base_line_documents ALTER COLUMN id SET DEFAULT nextval('base_line_documents_id_seq'::regclass);
+
+
+--
+-- Name: base_lines id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY base_lines ALTER COLUMN id SET DEFAULT nextval('base_lines_id_seq'::regclass);
+
+
+--
+-- Name: companies id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY companies ALTER COLUMN id SET DEFAULT nextval('companies_id_seq'::regclass);
+
+
+--
+-- Name: project_steps id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY project_steps ALTER COLUMN id SET DEFAULT nextval('project_steps_id_seq'::regclass);
+
+
+--
+-- Data for Name: base_line_documents; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY base_line_documents (id, t_document, t_state, n_version, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: base_line_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('base_line_documents_id_seq', 1, false);
+
+
+--
+-- Data for Name: base_lines; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY base_lines (id, t_name, t_state, created_at, updated_at) FROM stdin;
+1	primera	terminado	2016-10-16 20:31:19.287414	2016-10-16 20:31:19.287414
+2	dos	en curso	2016-10-16 20:37:09.706514	2016-11-01 22:24:16.935629
+\.
+
+
+--
+-- Name: base_lines_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('base_lines_id_seq', 2, true);
+
+
+--
+-- Data for Name: companies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY companies (id, t_name, t_logo, t_slogan, created_at, updated_at) FROM stdin;
+1	Empresa 1	/imagenes/empresa1.jpg	me mejor empresa 3	2016-05-02 19:03:56	2016-05-02 19:17:09
+2	Aguna 	asdfasdf\\\\asdf.png	esta es la cosa	2016-05-02 19:13:31	2016-05-02 19:13:31
+3	Empresa 1	/imagenes/empresa1.jpg	me mejor empresa 3	2016-05-02 19:03:56	2016-05-02 19:17:09
+4	Aguna 	asdfasdf\\\\asdf.png	esta es la cosa	2016-05-02 19:13:31	2016-05-02 19:13:31
+\.
+
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('companies_id_seq', 5, true);
+
+
+--
+-- Data for Name: goals; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY goals (id, n_processarea, t_name, t_description, t_type, created_at, updated_at, processarea_id) FROM stdin;
+1	1	Determinar las causas de los resultados seleccionados\r\n	Una causa raíz es un elemento inicial en una cadena causal que conduce a un resultado de interés.	SG 1	2016-04-28 01:52:49	2016-04-28 01:54:46	1
+2	1	Tratar las causas de los resultados seleccionados	Los proyectos que operan de acuerdo a un proceso bien definido analizan sistemáticamente dónde son necesarias las mejoras e implementan cambios del proceso para tratar las causas raíz de los resultados seleccionados	SG 2	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	1
+3	2	Establecer las líneas base	\N	SG 1	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+4	2	Seguir y controlar los cambios\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+5	2	Establecer la integridad.\t	\N	\tSG 3\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+6	3	Evaluar las alternativas\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+7	4	Utilizar el proceso definido del proyecto\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+8	4	Coordinar y colaborar con las partes interesadas relevantes\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+9	5	Alinear las actividades de medición y análisis.\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+10	5	Proporcionar los resultados de la medición\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+11	6	Establecer los activos de proceso de la organización\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+12	7	Determinar las oportunidades de mejora de procesos.\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+13	7	Planificar e implementar las acciones de proceso\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+14	7	Desplegar los activos de proceso de la organización e incorporar las experiencias.\t	\N	\tSG 3\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+15	8	Gestionar el rendimiento de negocio\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+16	8	Seleccionar las mejoras\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+17	8	Desplegar las mejoras\t	\N	\tSG 3\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+19	10	Establecer una capacidad de formación de la organización\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+20	10	Proporcionar formación\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+21	11	Prepararse para la integración del producto\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+22	11	Asegurar la compatibilidad de las interfaces\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+23	11	Ensamblar los componentes de producto y entregar el producto\t	\N	\tSG 3\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+24	12	Monitorizar el proyecto frente al plan\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+25	12	Gestionar las acciones correctivas hasta su cierre\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+29	14	Evaluar objetivamente los procesos y los productos de trabajo\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+30	14	Proporcionar una visión objetiva\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+31	15	Preparar la gestión cuantitativa\t	\N	\tSG1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+32	15	Gestionar el proyecto cuantitativamente\t	\N	\tSG2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+33	16	Desarrollar los requisitos de cliente\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+34	16	Desarrollar los requisitos de producto\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+35	16	Analizar y validar los requisitos\t	\N	\tSG 3\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+36	17	Gestionar los requisitos\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+37	18	Preparar la gestión de riesgos\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+38	18	Identificar y analizar los riesgos\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+39	18	Mitigar los riesgos\t	\N	\tSG 3\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+40	19	Establecer acuerdos con proveedores\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+41	19	Satisfacer los acuerdos con los proveedores\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+42	20	Seleccionar soluciones de componentes de producto\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+43	20	Desarrollar el diseño\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+44	20	Implementar el diseño del producto\t	\N	\tSG 3\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+45	21	Preparar la validación\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+46	21	Validar el producto o los componentes de producto\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+47	22	Preparar la verificación\t	\N	\tSG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+48	22	Realizar las revisiones entre pares\t	\N	\tSG 2\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+18	9	Establecer las líneas base y los modelos de rendimiento\t	\N	SG 1\t	2016-10-11 22:02:22.820215	2016-10-11 22:02:22.820215	\N
+26	13	Establecer las estimaciones\t	Se establecen y mantienen las estimaciones de los parámetros de planificación del proyecto	\tSG 1\t	2016-10-11 22:02:22.820215	2016-11-23 19:45:37.722642	\N
+27	13	Desarrollar un plan de proyecto\t	Se establece y mantiene un plan de proyecto como base para gestionar el proyecto.	\tSG 2\t	2016-10-11 22:02:22.820215	2016-11-23 19:46:03.532773	\N
+28	13	Obtener el compromiso con el plan\t	Se establecen y mantienen los compromisos con el plan de proyecto.	\tSG 3\t	2016-10-11 22:02:22.820215	2016-11-23 19:46:24.082048	\N
+\.
+
+
+--
+-- Name: goals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('goals_id_seq', 48, true);
+
+
+--
+-- Data for Name: levels; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY levels (id, t_name, created_at, updated_at, t_capability, t_madurity) FROM stdin;
+1	Nivel 0	2016-04-28 02:00:41	2016-04-28 02:00:41	incompleto	\N
+2	Nivel 1	2016-04-28 02:02:09	2016-04-28 02:02:09	realizado	inicial
+3	Nivel 2	2016-04-28 02:03:10	2016-04-28 02:03:10	gestionado	gestionado
+4	Nivel 3	2016-08-09 17:58:47	2016-08-09 17:58:47	definido	definido
+5	Nivel 4	2016-08-09 17:58:54	2016-08-09 17:58:54	\N	gestionado cuantitativamente
+6	Nivel 5	2016-10-05 00:51:47.778107	2016-10-05 00:51:47.778107	\N	en optimizacion 
+\.
+
+
+--
+-- Name: levels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('levels_id_seq', 6, true);
+
+
+--
+-- Data for Name: practices; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY practices (id, t_name, t_description, n_goal, created_at, updated_at, goal_id, t_code) FROM stdin;
+1	Seleccionar los resultados a analizar.	Esta actividad podría activarse por un evento (reactiva) o podría planificarse periódicamente, como al inicio de una nueva fase o tarea (proactiva).	1	2016-05-02 19:29:10	2016-05-02 19:29:10	1	SP 1.1\r\n
+2	Analizar las causas.	El propósito de este análisis es definir acciones que tratarán los resultados seleccionados mediante el análisis de los datos de resultados relevantes y la generación de propuestas de acción a implementar.	1	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	1	SP 1.2
+3	\tImplementar las propuestas de acción.\t	\N	2	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	2	\tSP 2.1\t
+4	\tEvaluar el efecto de las acciones implementadas\t	\N	2	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	2	\tSP 2.2\t
+5	\tRegistrar datos del análisis causal.\t	\N	2	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	2	\tSP 2.3\t
+6	\tIdentificar los elementos de configuración.\t	\N	3	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	3	\tSP 1.1\t
+7	\tEstablecer un sistema de gestión de configuración.\t	\N	3	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	3	\tSP 1.2\t
+8	\tCrear o liberar las líneas base\t	\N	3	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	3	\tSP 1.3\t
+9	\tSeguir las peticiones de cambio.\t	\N	4	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	4	\tSP 2.1\t
+10	\tControlar los elementos de configuración.\t	\N	4	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	4	\tSP 2.2\t
+11	\tEstablecer los registros de gestión de configuración.\t	\N	5	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	5	\tSP 3.1\t
+12	\tRealizar auditorías de configuración\t	\N	5	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	5	\tSP 3.2\t
+13	\tEstablecer las guías para el análisis de decisiones.\t	\N	6	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	6	\tSP 1.1\t
+14	\tEstablecer los criterios de evaluación.\t	\N	6	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	6	\tSP 1.2\t
+15	\tIdentificar las soluciones alternativas.\t	\N	6	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	6	\tSP 1.3\t
+16	\tSeleccionar los métodos de evaluación.\t	\N	6	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	6	\tSP 1.4\t
+17	\tEvaluar las soluciones alternativas.\t	\N	6	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	6	\tSP 1.5\t
+18	\tSeleccionar las soluciones\t	\N	6	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	6	\tSP 1.6\t
+19	\tEstablecer el proceso definido del proyecto.\t	\N	7	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	7	\tSP 1.1\t
+20	\tUtilizar los activos de proceso de la organización para planificar las actividades del proyecto.\t	\N	7	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	7	\tSP 1.2\t
+21	\tEstablecer el entorno de trabajo del proyecto.\t	\N	7	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	7	\tSP 1.3\t
+22	\tIntegrar los planes.\t	\N	7	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	7	\tSP 1.4\t
+23	\tGestionar el proyecto utilizando planes integrados.\t	\N	7	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	7	\tSP 1.5\t
+24	\tEstablecer los equipos.\t	\N	7	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	7	\tSP 1.6\t
+25	\tContribuir a los activos de proceso de la organización\t	\N	7	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	7	\tSP 1.7\t
+26	\tGestionar la involucración de las partes interesadas.\t	\N	8	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	8	\tSP 1.1\t
+27	\tGestionar las dependencias.\t	\N	8	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	8	\tSP 1.2\t
+28	\tResolver las cuestiones de coordinación.\t	\N	8	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	8	\tSP 1.3\t
+29	\tEstablecer los objetivos de medición.\t	\N	9	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	9	\tSP 1.1\t
+30	\tEspecificar las medidas.\t	\N	9	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	9	\tSP 1.2\t
+31	\tEspecificar los procedimientos de recogida y de almacenamiento de datos.\t	\N	9	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	9	\tSP 1.3\t
+32	\tEspecificar los procedimientos de análisis.\t	\N	9	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	9	\tSP 1.4\t
+33	\tObtener los datos de la medición.\t	\N	10	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	10	\tSP 2.1\t
+34	\tAnalizar los datos de la medición.\t	\N	10	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	10	\tSP 2.2\t
+35	\tAlmacenar los datos y los resultados.\t	\N	10	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	10	\tSP 2.3\t
+36	\tComunicar los resultados.\t	\N	10	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	10	\tSP 2.4\t
+37	\tEstablecer los procesos estándar.\t	\N	11	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	11	\tSP 1.1\t
+38	\tEstablecer las descripciones de los modelos de ciclo de vida.\t	\N	11	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	11	\tSP 1.2\t
+39	\tEstablecer los criterios y las guías de adaptación.\t	\N	11	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	11	\tSP 1.3\t
+40	\tEstablecer el repositorio de mediciones de la organización.\t	\N	11	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	11	\tSP 1.4\t
+41	\tEstablecer la biblioteca de activos de proceso de la organización.\t	\N	11	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	11	\tSP 1.5\t
+42	\tEstablecer los estándares del entorno de trabajo.\t	\N	11	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	11	\tSP 1.6\t
+43	\tEstablecer las reglas y guías para los equipos.\t	\N	11	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	11	\tSP 1.7\t
+44	\tEstablecer las necesidades de proceso de la organización.\t	\N	12	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	12	\tSP 1.1\t
+45	\tEvaluar los procesos de la organización.\t	\N	12	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	12	\tSP 1.2\t
+46	\tIdentificar las mejoras de procesos de la organización\t	\N	12	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	12	\tSP 1.3\t
+47	\tEstablecer los planes de acción de proceso.\t	\N	13	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	13	\tSP 2.1\t
+48	\tImplementar los planes de acción de proceso\t	\N	13	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	13	\tSP 2.2\t
+49	\tDesplegar los activos de proceso de la organización.\t	\N	14	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	14	\tSP 2.3\t
+50	\tDesplegar los procesos estándar.\t	\N	14	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	14	\tSP 2.3\t
+51	\tMonitorizar la implementación.\t	\N	14	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	14	\tSP 2.3\t
+52	\tIncorporar las experiencias en los activos de proceso de la organización.\t	\N	14	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	14	\tSP 2.3\t
+53	\tMantener los objetivos de negocio.\t	\N	15	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	15	\tSP 1.1\t
+54	\tAnalizar los datos de rendimiento de proceso\t	\N	15	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	15	\tSP 1.2\t
+55	\tIdentificar las áreas potenciales para la mejora.\t	\N	15	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	15	\tSP 1.3\t
+56	\tEducir las sugerencias de mejora\t	\N	16	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	16	\tSP 2.1\t
+57	\tAnalizar las sugerencias de mejora\t	\N	16	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	16	\tSP 2.2\t
+58	\tValidar las mejoras\t	\N	16	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	16	\tSP 2.3\t
+59	\tSeleccionar e implementar las mejoras para el despliegue\t	\N	16	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	16	\tSP 2.3\t
+60	\tPlanificar el despliegue\t	\N	17	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	17	\tSP 3.1\t
+61	\tGestionar el despliegue\t	\N	17	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	17	\tSP 3.2\t
+62	\tEvaluar los efectos de la mejora\t	\N	17	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	17	\tSP 3.3\t
+63	\tEstablecer los objetivos de calidad y de rendimiento de proceso\t	\N	18	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	18	\tSP 1.1\t
+64	\tSeleccionar los proceso.\t	\N	18	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	18	\tSP 1.2\t
+65	\tEstablecer las medidas de rendimiento de proceso\t	\N	18	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	18	\tSP 1.3\t
+66	\tAnalizar el rendimiento de proceso y establecer las líneas base de rendimiento de proceso.\t	\N	18	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	18	\tSP 1.4\t
+67	\tEstablecer los modelos de rendimiento de proceso\t	\N	18	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	18	\tSP 1.5\t
+68	\tEstablecer las necesidades estratégicas de formación. SP\t	\N	19	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	19	\tSP 1.1\t
+69	\tDeterminar qué necesidades de formación son responsabilidad de la organización\t	\N	19	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	19	\tSP 1.2\t
+70	\tEstablecer un plan táctico de formación en la organización\t	\N	19	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	19	\tSP 1.3\t
+71	\tEstablecer una capacidad de formación\t	\N	19	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	19	\tSP 1.4\t
+72	\tImpartir la formación\t	\N	20	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	20	\tSP 2.1\t
+73	\tEstablecer los registros de formación\t	\N	20	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	20	\tSP 2.2\t
+74	\tEvaluar la eficacia de la formación\t	\N	20	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	20	\tSP 2.3\t
+75	\tEstablecer una estrategia de integración\t	\N	21	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	21	\tSP 1.1\t
+76	\tEstablecer el entorno de integración del producto\t	\N	21	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	21	\tSP 1.2\t
+77	\tEstablecer los procedimientos y los criterios de integración del producto\t	\N	21	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	21	\tSP 1.3\t
+78	\tRevisar la completitud de las descripciones de las interfaces\t	\N	22	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	22	\tSP 2.1\t
+79	\tGestionar las interfaces\t	\N	22	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	22	\tSP 2.2\t
+80	\tConfirmar la disponibilidad de los componentes de producto para la integración\t	\N	23	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	23	\tSP 3.1\t
+81	\tEnsamblar los componentes de producto\t	\N	23	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	23	\tSP 3.2\t
+82	\tEvaluar los componentes de producto ensamblados\t	\N	23	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	23	\tSP 3.3\t
+83	\tEmpaquetar y entregar el producto o componente de producto\t	\N	23	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	23	\tSP 3.4\t
+84	\tMonitorizar los parámetros de planificación del proyecto.\t	\N	24	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	24	\tSP 1.1\t
+85	\tMonitorizar los compromisos.\t	\N	24	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	24	\tSP 1.2\t
+86	\tMonitorizar los riesgos del proyecto.\t	\N	24	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	24	\tSP 1.3\t
+87	\tMonitorizar la gestión de los datos.\t	\N	24	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	24	\tSP 1.4\t
+88	\tMonitorizar la involucración de las partes interesadas.\t	\N	24	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	24	\tSP 1.5\t
+89	\tLlevar a cabo las revisiones del progreso.\t	\N	24	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	24	\tSP 1.6\t
+90	\tLlevar a cado las revisiones de hitos.\t	\N	24	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	24	\tSP 1.7\t
+91	\tAnalizar las cuestiones.\t	\N	25	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	25	\tSP 2.1\t
+92	\tLlevar a cabo las acciones correctivas.\t	\N	25	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	25	\tSP 2.2\t
+93	\tGestionar las acciones correctivas\t	\N	25	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	25	\tSP 2.3\t
+108	\tEvaluar objetivamente los procesos.\t	\N	29	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	29	\tSP 1.1\t
+109	\tEvaluar objetivamente los productos de trabajo.\t	\N	29	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	29	\tSP 1.2\t
+110	\tComunicar y resolver las no conformidades.\t	\N	30	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	30	\tSP 2.1\t
+111	\tEstablecer los registros\t	\N	30	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	30	\tSP 2.2\t
+112	\tEstablecer los objetivos del proyecto.\t	\N	31	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	31	\tSP 1.1\t
+113	\tComponer el proceso definido.\t	\N	31	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	31	\tSP 1.2\t
+114	\tSeleccionar los subprocesos y los atributos.\t	\N	31	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	31	\tSP 1.3\t
+115	\tSeleccionar las medidas y las técnicas analíticas\t	\N	31	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	31	\tSP 1.4\t
+116	\tMonitorizar el rendimiento de los subprocesos seleccionados.\t	\N	32	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	32	\tSP 2.1\t
+117	\tGestionar el rendimiento del proyecto.\t	\N	32	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	32	\tSP 2.2\t
+118	\tRealizar el análisis de las causas raíz.\t	\N	32	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	32	\tSP 2.3\t
+119	\tEducir las necesidades.\t	\N	33	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	33	\tSP 1.1\t
+120	\tTrasformar las necesidades de las partes interesadas en requisitos de cliente\t	\N	33	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	33	\tSP 1.2\t
+121	\tEstablecer los requisitos de producto y de componente de producto.\t	\N	34	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	34	\tSP 2.1\t
+122	\tAsignar los requisitos de componente de producto.\t	\N	34	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	34	\tSP 2.1\t
+123	\tIdentificar los requisitos de interfaz.\t	\N	34	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	34	\tSP 2.3\t
+124	\tEstablecer los conceptos y los escenarios de operación.\t	\N	35	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	35	\tSP 3.1\t
+125	\tEstablecer una definición de la funcionalidad y de los atributos de calidad requeridos.\t	\N	35	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	35	\tSP 3.2\t
+126	\tAnalizar los requisitos\t	\N	35	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	35	\tSP 3.3\t
+127	\tAnalizar los requisitos para conseguir un equilibrio\t	\N	35	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	35	\tSP 3.4\t
+128	\tValidar los requisitos.\t	\N	35	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	35	\tSP 3.5\t
+129	\tComprender los requisitos.\t	\N	36	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	36	\tSP 1.1\t
+130	\tObtener el compromiso sobre los requisitos.\t	\N	36	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	36	\tSP 1.2\t
+131	\tGestionar los cambios a los requisitos.\t	\N	36	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	36	\tSP 1.3\t
+132	\tMantener la trazabilidad bidireccional de los requisitos.\t	\N	36	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	36	\tSP 1.4\t
+133	\tAsegurar el alineamiento entre el trabajo del proyecto y los requisitos\t	\N	36	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	36	\tSP 1.5\t
+96	Definir las fases del ciclo de vida del proyecto.\t	Definir las fases del ciclo de vida del proyecto sobre las que encuadrar el esfuerzo a planificar.	26	2016-10-11 22:30:46.789903	2016-11-23 23:01:11.803897	26	\tSP 1.3\t
+97	Estimar el esfuerzo y el coste.\t	Estimar el esfuerzo y el coste del proyecto para los productos de trabajo y para las tareas, basándose en el análisis razonado de la estimación.	26	2016-10-11 22:30:46.789903	2016-11-23 23:01:41.421404	26	\tSP 1.4\t
+99	Identificar los riesgos del proyecto.\t	Identificar y analizar los riesgos del proyecto.	27	2016-10-11 22:30:46.789903	2016-11-23 23:02:49.245646	27	\tSP 2.2\t
+100	Planificar la gestión de los datos.\t	Planificar la gestión de los datos del proyecto.	27	2016-10-11 22:30:46.789903	2016-11-23 23:03:39.474925	27	\tSP 2.3\t
+102	Planificar el conocimiento y las habilidades necesarias.\t	Planificar las necesidades de conocimiento y de habilidades para realizar el proyecto.	27	2016-10-11 22:30:46.789903	2016-11-23 23:04:34.677147	27	\tSP 2.5\t
+104	Establecer el plan de proyecto\t	Establecer y mantener el plan global del proyecto.	27	2016-10-11 22:30:46.789903	2016-11-23 23:05:38.236259	27	\tSP 2.7\t
+105	Revisar los planes que afectan al proyecto.\t	Revisar todos los planes que afectan al proyecto para comprender los compromisos del proyecto	28	2016-10-11 22:30:46.789903	2016-11-23 23:06:07.457324	28	\tSP 3.1\t
+107	Obtener el compromiso con el plan\t	Obtener el compromiso de las partes interedas relevantes responsables de realizar y de dar soporte a la ejecución del plan.	28	2016-10-11 22:30:46.789903	2016-11-23 23:07:09.311391	28	\tSP 3.3\t
+134	\tDeterminar las fuentes y las categorías de riesgos\t	\N	37	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	37	\tSP 1.1\t
+135	\tDefinir los parámetros de riesgos.\t	\N	37	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	37	\tSP 1.2\t
+136	\tEstablecer una estrategia de gestión de riesgos.\t	\N	37	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	37	\tSP 1.3\t
+137	\tIdentificar los riesgos\t	\N	38	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	38	\tSP 2.1\t
+138	\tEvaluar, clasificar y priorizar los riesgos\t	\N	38	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	38	\tSP 2.2\t
+139	\tDesarrollar los planes de mitigación de riesgos\t	\N	39	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	39	\tSP3.1\t
+140	\tImplementar los planes de mitigación de riesgos\t	\N	39	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	39	\tSP3.2\t
+141	\tDeterminar el tipo de adquisición\t	\N	40	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	40	\tSP 1.1\t
+142	\tSeleccionar a los proveedores\t	\N	40	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	40	\tSP 1.2\t
+143	\tEstablecer acuerdos con proveedores\t	\N	40	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	40	\tSP 1.3\t
+144	\tEjecutar el acuerdo con el proveedor\t	\N	41	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	41	\tSP 2.1\t
+145	\tAceptar el producto adquirido\t	\N	41	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	41	\tSP 2.2\t
+146	\tAsegurar la transición de los producto\t	\N	41	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	41	\tSP 2.3\t
+147	\tDesarrollar soluciones alternativas y los criterios de selección\t	\N	42	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	42	\tSP 1.1\t
+148	\tSeleccionar las soluciones de componentes de producto\t	\N	42	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	42	\tSP 1.2\t
+149	\tDiseñar el producto o los componentes de producto\t	\N	43	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	43	\tSP 2.1\t
+150	\tEstablecer un paquete de datos técnicos\t	\N	43	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	43	\tSP 2.2\t
+151	\tDiseñar las interfaces usando criterios\t	\N	43	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	43	\tSP 2.3\t
+152	\tRealizar los análisis sobre si hacer, comprar o reutilizar\t	\N	43	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	43	\tSP 2.4\t
+153	\tImplementar el diseño.\t	\N	44	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	44	\tSP 3.1\t
+154	\tDesarrollar la documentación de soporte del producto\t	\N	44	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	44	\tSP 3.2\t
+155	\tSeleccionar los productos para la validación\t	\N	45	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	45	\tSP 1.1\t
+156	\tEstablecer el entorno de validación\t	\N	45	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	45	\tSP 1.2\t
+157	\tEstablecer los procedimientos y los criterios de validación\t	\N	45	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	45	\tSP 1.3\t
+158	\tRealizar la validación\t	\N	46	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	46	\tSP 2.1\t
+159	\tAnalizar los resultados de la validación\t	\N	46	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	46	\tSP 2.1\t
+160	\tSeleccionar los productos de trabajo para la verificación\t	\N	47	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	47	\tSP 1.1\t
+161	\tEstablecer el entorno de verificación\t	\N	47	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	47	\tSP 1.2\t
+162	\tEstablecer los procedimientos y los criterios de verificación\t	\N	47	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	47	\tSP 1.3\t
+163	\tPreparar las revisiones entre pares\t	\N	48	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	48	\tSP 2.1\t
+164	\tRealizar las revisiones entre pares\t	\N	48	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	48	\tSP 2.2\t
+165	\tAnalizar los datos de las revisiones entre pares.\t	\N	48	2016-10-11 22:30:46.789903	2016-10-11 22:30:46.789903	48	\tSP 2.3\t
+94	Estimar el alcance del proyecto.\t	Establecer una estructura de descomposición del trabajo (WBS) de alto nivel para estimar el alcance del proyecto.	26	2016-10-11 22:30:46.789903	2016-11-23 22:52:33.73675	26	\tSP 1.1\t
+95	Establecer las estimaciones de los atributos de los productos de trabajo y de las tareas.\t	Establecer y mantener las estimaciones de los atributos de los productos de trabajo y de las tareas.	26	2016-10-11 22:30:46.789903	2016-11-23 22:53:12.150164	26	\tSP 1.2\t
+98	Establecer el presupuesto y el calendario.\t	Establecer y mantener el presupuesto y el calendario del proyecto.	27	2016-10-11 22:30:46.789903	2016-11-23 23:02:16.22147	27	\tSP 2.1\t
+101	Planificar los recursos del proyecto.\t	Planificar los recursos para realizar el proyecto.	27	2016-10-11 22:30:46.789903	2016-11-23 23:04:07.733336	27	\tSP 2.4\t
+103	Planificar la involucración de las partes interesadas.\t	Planificar la involucración de las partes interesadas identificadas.	27	2016-10-11 22:30:46.789903	2016-11-23 23:05:08.129351	27	\tSP 2.6\t
+106	Conciliar los niveles de trabajo y de recursos.\t	Ajustar el plan de proyecto para conciliar los recursos disponibles y los estimados.	28	2016-10-11 22:30:46.789903	2016-11-23 23:06:34.315529	28	\tSP 3.2\t
+\.
+
+
+--
+-- Name: practices_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('practices_id_seq', 165, true);
+
+
+--
+-- Data for Name: processareas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY processareas (id, n_level, t_name, created_at, updated_at, level_id, t_initials, t_category, for_develop) FROM stdin;
+4	5	Análisis Causal y Resolución 	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	5	CAR	soporte	\N
+5	3	Análisis de Decisiones y Resolución	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	DAR	soporte	\N
+6	3	Gestión Integrada del Proyecto	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	IPM	gestión de proyectos	\N
+7	2	Medición y Análisis	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	2	MA	soporte	\N
+8	3	Definición de Procesos de la Organización	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	OPD	gestión de procesos	\N
+9	3	Enfoque en Procesos de la Organización	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	OPF	gestión de procesos	\N
+10	5	Gestión del Rendimiento de la Organización	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	5	OPM	gestión de procesos	\N
+11	4	Rendimiento de Procesos de la Organización	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	4	OPP	gestión de procesos	\N
+12	3	Formación en la Organización	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	OT	gestión de procesos	\N
+13	3	Integración del Producto	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	PI	ingeniería	\N
+14	2	Monitorización y Control del Proyecto	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	2	PMC	gestión de proyectos	\N
+16	2	Aseguramiento de la Calidad del Proceso y del Producto	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	2	PPQA	soporte	\N
+17	4	Gestión Cuantitativa del Proyecto	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	4	QPM	gestión de proyectos	\N
+18	3	Desarrollo de Requisitos	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	RD	ingeniería	\N
+19	2	Gestión de Requisitos	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	2	REQM	gestión de proyectos	\N
+20	3	Gestión de Riesgos	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	RSKM	\tgestión de proyectos	\N
+21	2	Gestión de Acuerdos con Proveedores	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	2	SAM	gestión de proyectos	\N
+22	3	Solución Técnica	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	TS	ingeniería	\N
+23	3	Validación	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	VAL	ingeniería	\N
+24	3	Verificación	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	3	VER	ingeniería	\N
+15	2	Planificación del Proyecto	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	2	PP	gestión de proyectos	t
+1	2	Gestión de Configuración	2016-10-05 01:41:25.932931	2016-10-05 01:41:25.932931	2	CM	soporte	\N
+\.
+
+
+--
+-- Name: processareas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('processareas_id_seq', 64, true);
+
+
+--
+-- Data for Name: project_steps; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY project_steps (id, n_realtime, "n_estimatedTime", "n_completionPercentage", t_state, created_at, updated_at) FROM stdin;
+1	2016-10-16 19:04:00	2016-10-16 19:04:00	80	en curso	2016-10-16 19:05:10.775246	2016-10-16 19:05:10.775246
+\.
+
+
+--
+-- Name: project_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('project_steps_id_seq', 1, true);
+
+
+--
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY projects (id, t_name, created_at, updated_at, companie_id, company_id) FROM stdin;
+1	Primer proyecto	2016-05-02 19:19:08	2016-05-02 19:19:08	\N	\N
+2	algun proyecto	2016-05-02 19:22:03	2016-05-02 19:22:03	\N	\N
+3	alguno	2016-05-06 17:57:38	2016-05-06 17:57:38	\N	\N
+4	dfdsf	2016-09-29 14:23:42.723035	2016-09-29 14:23:42.723035	\N	\N
+\.
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('projects_id_seq', 4, true);
+
+
+--
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY roles (id, t_rolename) FROM stdin;
+\.
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('roles_id_seq', 1, false);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY schema_migrations (version) FROM stdin;
+20160427180252
+20160428005004
+20160428014021
+20160428014044
+20160428014102
+20160428014120
+20160428014138
+20160428234434
+20160504233742
+20160505035548
+20160506163726
+20160506170050
+20160506171606
+20160506175330
+20161005003911
+20161005005648
+20161005020255
+20161005020835
+20161011222456
+20161016173414
+20161016185757
+20161016193150
+20161016194549
+20161110045313
+\.
+
+
+--
+-- Data for Name: steps; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY steps (id, t_description, n_practice, n_yeststep, n_nostep, t_typestep, n_rol, user_id, practice_id, contains_process, id_first_step_inside) FROM stdin;
+2	diseño	\N	1	\N	\N	2	1	\N	t	\N
+3	desarrollo	\N	2	\N	\N	4	1	\N	t	\N
+4	pruebas	\N	3	\N	\N	4	\N	\N	t	\N
+8	seleccionar equipo de trabajo	\N	7	\N	\N	\N	\N	\N	t	1
+7	pre-análisis	\N	6	\N	\N	\N	\N	\N	t	1
+9	Planear reunión con equipo de trabajo y cliente	\N	\N	\N	\N	\N	\N	\N	f	\N
+10	Enviar propuesta técnica a cliente	\N	9	\N	\N	\N	\N	\N	f	\N
+11	Realizar estimación inicial	\N	10	\N	\N	\N	\N	\N	f	\N
+1	Análisis	\N	\N	\N	start	1	2	\N	t	\N
+6	Estimación inicial	\N	\N	\N	start	\N	\N	\N	t	1
+5	mantenimiento	\N	4	\N	end	4	\N	\N	t	\N
+12	Estimar esfuerzo hora/hombre	\N	11	\N	\N	\N	\N	95	f	\N
+\.
+
+
+--
+-- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('steps_id_seq', 12, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, name, address, role, created_at, updated_at, roles_id) FROM stdin;
+2	pancho@mail.com	$2a$11$PwxsH1GSNEcWsWq.dAgRreXREq3IepOJ.ont1uAxxJHVyvlyORRB6	\N	\N	\N	1	2016-04-28 22:42:06	2016-04-28 22:42:06	::1	::1	Pancho	villa	2	2016-04-28 22:42:05	2016-04-28 22:42:06	\N
+1	rafael@mail.com	$2a$11$n79C68S2LZnqGRPn/wHk.eqv8BlXo/mzKhRoLzdLdUQuNexvmcYHS	\N	\N	\N	11	2016-11-01 23:19:47.959224	2016-11-01 22:25:54.838032	127.0.0.1	::1	Rafael	HouseR	1	2016-04-28 00:55:13	2016-11-10 14:02:41.30148	\N
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 3, false);
+
+
+--
+-- Name: base_line_documents base_line_documents_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY base_line_documents
+    ADD CONSTRAINT base_line_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: base_lines base_lines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY base_lines
+    ADD CONSTRAINT base_lines_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY companies
+    ADD CONSTRAINT companies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: goals goals_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY goals
+    ADD CONSTRAINT goals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: levels levels_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY levels
+    ADD CONSTRAINT levels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: practices practices_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY practices
+    ADD CONSTRAINT practices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: processareas processareas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY processareas
+    ADD CONSTRAINT processareas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_steps project_steps_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY project_steps
+    ADD CONSTRAINT project_steps_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: steps steps_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY steps
+    ADD CONSTRAINT steps_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: steps fk_rails_0f28e70afa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY steps
+    ADD CONSTRAINT fk_rails_0f28e70afa FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: steps fk_rails_324d50fec2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY steps
+    ADD CONSTRAINT fk_rails_324d50fec2 FOREIGN KEY (practice_id) REFERENCES practices(id);
+
+
+--
+-- Name: projects fk_rails_44a549d7b3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY projects
+    ADD CONSTRAINT fk_rails_44a549d7b3 FOREIGN KEY (company_id) REFERENCES companies(id);
+
+
+--
+-- Name: practices fk_rails_76b79c1c62; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY practices
+    ADD CONSTRAINT fk_rails_76b79c1c62 FOREIGN KEY (goal_id) REFERENCES goals(id);
+
+
+--
+-- Name: processareas fk_rails_7f3e6335c1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY processareas
+    ADD CONSTRAINT fk_rails_7f3e6335c1 FOREIGN KEY (level_id) REFERENCES levels(id);
+
+
+--
+-- Name: goals fk_rails_f089ebf001; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY goals
+    ADD CONSTRAINT fk_rails_f089ebf001 FOREIGN KEY (processarea_id) REFERENCES processareas(id);
+
+
+--
+-- Name: users users_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_ibfk_1 FOREIGN KEY (roles_id) REFERENCES roles(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

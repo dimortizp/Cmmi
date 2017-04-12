@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  n_step: 1
+  n_project: 1
+  t_document: MyString
+  t_type: MyString
+
+two:
+  n_step: 1
+  n_project: 1
+  t_document: MyString
+  t_type: MyString
