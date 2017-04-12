@@ -12,29 +12,26 @@
   <% end %>
 
   <div class="field">
-    Descripcion: <br>
+    Proceso padre <br>
+    <%= f.collection_select :parent_id, Step.all.order(:t_description), :id, :t_description, :include_blank => true %>
+  </div>
+
+  <div class="field">
+    Proceso: <br>
     <%= f.text_field :t_description %>
   </div>
+
   <div class="field">
-    Practica: <br>
-    <%= f.number_field :n_practice %>
+    <%= f.label "Si esta bien hecho el anterior" %><br>
+    <%= f.collection_select :n_yeststep, Step.all.order(:t_description), :id, :t_description, :include_blank => true %>
+    
   </div>
+
   <div class="field">
-    <%= f.label :n_yestStep %><br>
-    <%= f.number_field :n_yestStep %>
+    <%= f.label "Sino esta bien hecho el anterior" %><br>
+    <%= f.collection_select :n_nostep, Step.all.order(:t_description), :id, :t_description, :include_blank => true %>
   </div>
-  <div class="field">
-    <%= f.label :n_noStep %><br>
-    <%= f.number_field :n_noStep %>
-  </div>
-  <div class="field">
-    <%= f.label :t_typeStep %><br>
-    <%= f.text_field :t_typeStep %>
-  </div>
-  <div class="field">
-    Rol: <br>
-    <%= f.number_field :n_rol %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -2,8 +2,8 @@
 
 one:
   t_name: MyString
-  n_date: MyString
+  t_state: MyString
 
 two:
   t_name: MyString
-  n_date: MyString
+  t_state: MyString

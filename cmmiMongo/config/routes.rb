@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
+  get 'pdf/show'
+
+  resources :practices
+
+  resources :goals
+
+  resources :processareas
+
+  get 'processmap/match'
+
+  resources :base_line_documents
+  resources :base_lines
+  resources :project_steps
+  resources :project_step_ms
+  resources :step_ms
   resources :formats
-  resources :stepouts
-  resources :stepins
   resources :documents
-  resources :project_stepouts
-  resources :project_stepins
   resources :base_lines
   resources :project_ns
   resources :project_steps
@@ -28,6 +39,8 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+
+  mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

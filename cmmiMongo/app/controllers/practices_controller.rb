@@ -1,10 +1,13 @@
 class PracticesController < ApplicationController
+  
   before_action :set_practice, only: [:show, :edit, :update, :destroy]
 
   # GET /practices
   # GET /practices.json
   def index
-    @practices = Practice.all
+    @grid = PracticesGrid.new(params[:practices_grid]) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   # GET /practices/1

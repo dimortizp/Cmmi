@@ -1,19 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">
+		<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>N level:</strong>
-  <%= @processarea.n_level %>
-</p>
+		<p>
+		  <strong>Nivel:</strong>
+		  <%= @processarea.n_level %>
+		</p>
 
-<p>
-  <strong>T name:</strong>
-  <%= @processarea.t_name %>
-</p>
+		<p>
+		  <strong>Nombre:</strong>
+		  <%= @processarea.t_name %>
+		</p>
 
-<p>
-  <strong>T description:</strong>
-  <%= @processarea.t_description %>
-</p>
+		<p>
+		  <strong>Iniciales:</strong>
+		  <%= @processarea.t_initials %>
+		</p>
+		<p>
+		  <strong>Categoria:</strong>
+		  <%= @processarea.t_category %>
+		</p>
 
-<%= link_to 'Edit', edit_processarea_path(@processarea) %> |
-<%= link_to 'Back', processareas_path %>
+		<%= link_to 'Editar', edit_processarea_path(@processarea) %> |
+		<%= link_to 'Regresar', processareas_path %>
+   </div>    
+  </div>
+</div>

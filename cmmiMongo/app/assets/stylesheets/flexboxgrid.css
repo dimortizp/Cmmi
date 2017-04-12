@@ -1,10 +1,36 @@
 /* Uncomment and set these variables to customize the grid. */
+.footer {
+    width: auto;    
+    position: relative;
+    bottom: 0px;
+  }
 
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
   padding-right: 2rem;
   padding-left: 2rem;
+}
+
+.nav > li {
+float:left;
+}
+
+.nav li a {
+display:block;
+padding: 0px 4px;
+background:#E74C3C;
+}
+.nav li a:hover {
+background:#E74C3C;
+}
+.nav li ul {
+display:none;
+position:absolute;
+
+}
+.nav li:hover > ul {
+display:block;
 }
 
 .row {
@@ -994,4 +1020,5 @@
     -webkit-box-ordinal-group: 2;
     order: 1;
   }
+
 }

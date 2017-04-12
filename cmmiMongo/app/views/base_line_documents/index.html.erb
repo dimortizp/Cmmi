@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Base Line Documents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>T document</th>
+      <th>T state</th>
+      <th>N version</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @base_line_documents.each do |base_line_document| %>
+      <tr>
+        <td><%= base_line_document.t_document %></td>
+        <td><%= base_line_document.t_state %></td>
+        <td><%= base_line_document.n_version %></td>
+        <td><%= link_to 'Show', base_line_document %></td>
+        <td><%= link_to 'Edit', edit_base_line_document_path(base_line_document) %></td>
+        <td><%= link_to 'Destroy', base_line_document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Base line document', new_base_line_document_path %>

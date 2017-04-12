@@ -3,42 +3,48 @@
     <div class="box text-left">
        <p id="notice"><%= notice %></p>
 
+       <ul class="breadcrumbs">
+        <% @step.self_and_ancestors.reverse.each do |step| %> 
+          <% if step.id == @step.id %>
+           <%= link_to step.t_description, step, :class => 'current' %> |
+          <% else %>
+            <%= link_to step.t_description, step %> |
+          <% end %>
+        <% end %>
+      </ul>
+
       <p>
-        <strong>Descripcion</strong>
+        <strong>Descripcion:</strong>
         <%= @step.t_description %>
       </p>
 
       <p>
-        <strong>Numero de practica</strong>
+        <strong>Practica de CMMI-Dev:</strong>
         <%= @step.n_practice %>
       </p>
 
       <p>
-        <strong>N yeststep:</strong>
-        <%= @step.n_yestStep %>
+        <strong>proceso siguiente:</strong>
+        <%= @step.n_yeststep %>
       </p>
 
       <p>
-        <strong>N nostep:</strong>
-        <%= @step.n_noStep %>
+        <strong>Si el proceso no esta bien:</strong>
+        <%= @step.n_nostep %>
       </p>
 
-      <p>
-        <strong>T typestep:</strong>
-        <%= @step.t_typeStep %>
-      </p>
-
-      <p>
-        <strong>Rol</strong>
-        <%= @step.n_rol %>
-      </p>
-      <p>
-        <strong>Creado por </strong>
-        <%=  @step.user.email%>
-      </p>
+      <% unless @step.children.empty? %>
+        <p><strong>Procesos hijo:</strong></p>
+        <ul id="menu">
+          <% @step.children.each do |step| %>
+          <li><%= link_to step.t_description, step %></li>
+          <% end %>
+        </ul>
+      <% end %>
 
       <%= link_to 'Editar', edit_step_path(@step) %> |
-      <%= link_to 'Regresar', steps_path %>
+      <%= link_to 'Regresar', steps_path %> |
+      <%= link_to 'Nuevo proceso', new_step_path %>
     </div>    
   </div>
 </div>
