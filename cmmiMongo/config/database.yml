@@ -12,7 +12,7 @@ default: &default
 development:
   <<: *default
   database: structured
-  username: postgres
+  username: root
   password: admin
   host: localhost
 

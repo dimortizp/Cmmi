@@ -1,0 +1,41 @@
+uno:
+  type: "TASK"
+  desc: "potapotpaotpo"
+  practice: "PP-SP-1.1"
+dos:
+  type: "PROCESS"
+  desc: "potapotpaotpo"
+  practice: "PP-SP-1.1"
+  steps:
+    subuno:
+      type: "TASK"
+      desc: "potapotpaotpo"
+      practice: "PP-SP-1.1"
+    subdos:
+      type: "TASK"
+      desc: "potapotpaotpo"
+      practice: "PP-SP-1.1"
+tres:
+  type: "DECISION"
+  desc: "potapotpaotpo"
+  yes:
+   subtresyes:
+     type: "TASK"
+     desc: "potapotpaotpo"
+     practice: "PP-SP-1.3"
+   subtresyesdos:
+     type: "LINK"
+     link: "cuatro"
+  no:
+   subtresno:
+     type: "TASK"
+     desc: "potapotpaotpo"
+     practice: "PP-SP-1.5"
+   subtresnodos:
+     type: "LINK"
+     link: "cuatro"
+cuatro:
+  type: "TASK "
+  desc: "potapotpaotpo"
+  practice: "PP-SP-1.1"
+

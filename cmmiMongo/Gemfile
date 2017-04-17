@@ -70,3 +70,5 @@ gem 'pdfjs_viewer-rails'
 gem 'autoprefixer-rails'
 
 gem 'bootstrap_sb_admin_base_v2'
+
+gem 'carrierwave', '~> 0.9'

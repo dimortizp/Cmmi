@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'resumes/index'
+
+  get 'resumes/new'
+
+  get 'resumes/create'
+
+  get 'resumes/destroy'
+
   get 'pdf/show'
 
   resources :practices
@@ -29,6 +37,8 @@ Rails.application.routes.draw do
   resources :goals
   resources :goals
   devise_for :users
+
+  resources :resumes, only: [:index, :new, :create, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -87,4 +97,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  #arrierWaveExample::Application.routes.draw do
+  # resources :resumes, only: [:index, :new, :create, :destroy]
+  # root "resumes#index"
+  #end
 end

@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  require File.join(Rails.root, "lib/assets/import_yaml.rb")
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies
@@ -25,9 +26,10 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-
+    import(@company.processmap_file_name)
     respond_to do |format|
       if @company.save
+
         format.html { redirect_to @company, notice: 'La compañia fue creada, satisfactoriamente' }
         format.json { render :show, status: :created, location: @company }
       else
@@ -41,6 +43,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     respond_to do |format|
+    import(@company.processmap.path)
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'La compañia fue actializada, satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @company }
